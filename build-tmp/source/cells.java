@@ -45,7 +45,7 @@ float trx = 0;
 float trz = 0;
 
 
-int totalParticles = 30 ;  //odd number
+int totalParticles = 40 ;  //odd number
 Particle[] particles = new Particle[totalParticles];
 Particle puller,pusher;
 Cloud cl;
@@ -69,19 +69,27 @@ public void setup(){
   global.init();
   //initialize moviemaker
   //if(RECORDING){ mm = new MovieMaker(pg,global.w,global.h,"mov.mov",24,MovieMaker.JPEG,MovieMaker.HIGH); }
+
+  initParticles();
+}
+
+public void initParticles(){
+
   //initialize sketch
-  for(int i=0;i<particles.length;i++){
-    float x = random(pg.width)-pg.width/2; 
+  for(int i=0;i<particles.length/2;i++){
+    float x =random(pg.width)-pg.width/2; 
     float y = random(pg.height)-pg.height/2;
     float r = random(2,3);
-    particles[i] = new Particle(x,y,0,r,true);
+    particles[2*i] = new Particle(x,y,0,r,true);
+    particles[2*i+1] = new Particle(-x,y,0,r,true); 
     
   }
   cl = new Cloud(particles);
   de = new Delaunay(particles,global.circumscribed_face);
   vo = new Voronoi(de);
-}
 
+
+}
 public void draw(){
    render();
 }
@@ -616,16 +624,24 @@ public void keyPressed() {
     
     saveToPrint = true; 
     println("saving to pdf - starting");
+  }else if (key=='r' || key=='R') {
+    
+    initParticles();
   }
 }
 
 
 public void mouseReleased() {
     //lower left corner 
- 
-    // plantHexagon(mouseX, mouseY, 25) ;
+    int i = floor(random(0, particles.length/2));
+   
+    float r = random(2,3);
 
-  
+    particles[2*i]. x = mouseX -pg.width/2;
+    particles[2*i]. y= mouseY -pg.height/2;
+    // particles[2*i+1] = new Particle(-mouseX,mouseY,0,r,true); 
+
+    
 }
 //------ LINE ------//
 class Line{

@@ -51,12 +51,12 @@ void setup(){
   //initialize moviemaker
   //if(RECORDING){ mm = new MovieMaker(pg,global.w,global.h,"mov.mov",24,MovieMaker.JPEG,MovieMaker.HIGH); }
   //initialize sketch
-  for(int i=0;i<particles.length/2;i++){
+  for(int i=0;i<particles.length;i++){
     float x = random(pg.width)-pg.width/2; 
     float y = random(pg.height)-pg.height/2;
     float r = random(2,3);
-    particles[i*2] = new Particle(x,y,0,r,true);
-    particles[i*2+1] = new Particle(pg.width-x,y,0,r,true);  
+    particles[i] = new Particle(x,y,0,r,true);
+    
   }
   cl = new Cloud(particles);
   de = new Delaunay(particles,global.circumscribed_face);
@@ -99,7 +99,7 @@ void render(){
       endRecord();
       println("saving to pdf – done");
     }
-
+ 
     pg.popMatrix();
        // image output
 
@@ -115,15 +115,5 @@ void render(){
 }
 
 
-String timestamp() {
-  return String.format("%1$ty%1$tm%1$td_%1$tH%1$tM%1$tS", Calendar.getInstance());
-}
 
-void keyPressed() {
-  if (key=='p' || key=='P') {
-    
-    saveToPrint = true; 
-    println("saving to pdf - starting");
-  }
-}
 

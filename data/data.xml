@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- -n: holding at n stage -->
+<!-- 0: nothing -->
+<!-- 1: concept, proposal -->
+<!-- 2: design development -->
+<!-- 3: execution -->
+<!-- 4: revisions -->
+<!-- 5: maintenance -->
+<!-- 6: complete -->
+<!-- 7: cancelled -->
+<!-- 8: proposal rejected -->
+<data>
+<project id="101" name="McCrum">
+<event label="" date="3-1-2007" stage="1"/>
+<event label="" date="3-10-2007" stage="2"/>
+<event label="" date="3-15-2007" stage="3"/>
+<event label="" date="4-15-2007" stage="-3"/>
+<event label="" date="9-10-2007" stage="2"/>
+<event label="" date="9-18-2007" stage="3"/>
+<event label="" date="10-4-2007" stage="6"/>
+<event label="" date="10-15-2007" stage="5"/>
+<event label="" date="10-30-2007" stage="6"/>
+</project>
+<project id="102" name="HWKN">
+<event label="" date="8-18-2007" stage="1"/>
+<event label="" date="8-28-2007" stage="8"/>
+</project>
+<project id="103" name="Van">
+<event label="" date="11-28-2007" stage="1"/>
+<event label="" date="1-10-2008" stage="2"/>
+<event label="" date="2-20-2008" stage="3"/>
+<event label="" date="3-20-2008" stage="-3"/>
+</project>
+<project id="104" name="Curiobot">
+<event label="" date="10-15-2007" stage="1"/>
+<event label="" date="10-16-2007" stage="2"/>
+<event label="" date="10-20-2007" stage="3"/>
+<event label="" date="11-8-2007" stage="5"/>
+<event label="" date="3-1-2008" stage="2"/>
+<event label="" date="3-3-2008" stage="3"/>
+<event label="" date="3-13-2008" stage="5"/>
+<event label="" date="6-10-2008" stage="2"/>
+<event label="" date="6-13-2008" stage="3"/>
+<event label="" date="7-31-2008" stage="5"/>
+</project>
+<project id="105" name="TotT">
+<event label="" date="1-28-2008" stage="1"/>
+<event label="" date="2-10-2008" stage="8"/>
+</project>
+<project id="125" name="DMD">
+<event label="" date="2-7-2008" stage="1"/>
+<event label="" date="2-14-2008" stage="-1"/>
+<event label="" date="4-10-2008" stage="7"/>
+</project>
+<project id="126" name="EEJ">
+<event label="" date="3-3-2008" stage="1"/>
+<event label="" date="3-7-2008" stage="2"/>
+<event label="" date="3-10-2008" stage="3"/>
+<event label="" date="4-1-2008" stage="6"/>
+<event label="" date="8-15-2008" stage="4"/>
+<event label="" date="8-27-2008" stage="6"/>
+<event label="" date="10-25-2008" stage="4"/>
+<event label="" date="11-3-2008" stage="6"/>
+</project>
+<project id="127" name="Neoscope">
+<event label="" date="3-29-2008" stage="1"/>
+<event label="" date="4-2-2008" stage="-1"/>
+<event label="" date="4-18-2008" stage="8"/>
+</project>
+<project id="128" name="KDE1">
+<event label="" date="3-31-2008" stage="1"/>
+<event label="" date="4-4-2008" stage="-1"/>
+<event label="" date="4-25-2008" stage="8"/>
+</project>
+<project id="129" name="NxN">
+<event label="" date="4-11-2008" stage="1"/>
+<event label="" date="4-24-2008" stage="-1"/>
+<event label="" date="9-20-2008" stage="1"/>
+<event label="" date="9-22-2008" stage="2"/>
+<event label="" date="9-30-2008" stage="-2"/>
+</project>
+<project id="131" name="SBK">
+<event label="" date="4-15-2008" stage="1"/>
+<event label="" date="5-6-2008" stage="2"/>
+<event label="" date="5-10-2008" stage="3"/>
+<event label="" date="5-20-2008" stage="6"/>
+</project>
+<project id="132" name="OBG">
+<event label="" date="5-8-2008" stage="1"/>
+<event label="" date="5-15-2008" stage="2"/>
+<event label="" date="5-25-2008" stage="3"/>
+<event label="" date="7-7-2008" stage="4"/>
+<event label="" date="7-15-2008" stage="6"/>
+</project>
+<project id="133" name="Salsa">
+<event label="" date="5-1-2008" stage="2"/>
+<event label="" date="5-5-2008" stage="3"/>
+<event label="" date="5-17-2008" stage="4"/>
+<event label="" date="5-21-2008" stage="6"/>
+<event label="" date="8-15-2008" stage="3"/>
+<event label="" date="8-28-2008" stage="6"/>
+<event label="" date="10-29-2008" stage="5"/>
+<event label="" date="11-1-2008" stage="6"/>
+</project>
+<project id="138" name="New Shoes">
+<event label="" date="7-7-2008" stage="1"/>
+<event label="" date="7-14-2008" stage="2"/>
+<event label="" date="7-30-2008" stage="3"/>
+<event label="" date="8-20-2008" stage="4"/>
+<event label="" date="9-14-2008" stage="6"/>
+</project>
+<project id="139" name="KDE2">
+<event label="" date="7-15-2008" stage="1"/>
+<event label="" date="7-20-2008" stage="-1"/>
+</project>
+<project id="141" name="KDE3">
+<event label="" date="7-20-2008" stage="1"/>
+<event label="" date="7-25-2008" stage="2"/>
+<event label="" date="8-10-2008" stage="-2"/>
+</project>
+<project id="142" name="SK1">
+<event label="" date="7-20-2008" stage="3"/>
+<event label="" date="8-4-2008" stage="4"/>
+<event label="" date="8-8-2008" stage="6"/>
+</project>
+<project id="144" name="Topline">
+<event label="" date="7-28-2008" stage="1"/>
+<event label="" date="8-15-2008" stage="2"/>
+<event label="" date="8-30-2008" stage="3"/>
+<event label="" date="9-9-2008" stage="-3"/>
+</project>
+<project id="145" name="NBC">
+<event label="" date="8-12-2008" stage="1"/>
+<event label="" date="9-1-2008" stage="8"/>
+</project>
+<project id="146" name="SK2">
+<event label="" date="9-5-2008" stage="1"/>
+<event label="" date="9-15-2008" stage="-1"/>
+<event label="" date="10-20-2008" stage="1"/>
+<event label="" date="10-25-2008" stage="-1"/>
+</project>
+<project id="148" name="Hygenall">
+<event label="" date="10-1-2008" stage="3"/>
+<event label="" date="10-9-2008" stage="-3"/>
+<event label="" date="10-28-2008" stage="3"/>
+<event label="" date="11-18-2008" stage="4"/>
+</project>
+<project id="149" name="AKD">
+<event label="" date="9-7-2008" stage="1"/>
+<event label="" date="11-19-2008" stage="2"/>
+</project>
+<project id="150" name="SK3">
+<event label="" date="9-5-2008" stage="1"/>
+<event label="" date="9-10-2008" stage="-1"/>
+<event label="" date="11-8-2008" stage="1"/>
+<event label="" date="11-18-2008" stage="-1"/>
+</project>
+<project id="151" name="KDE4">
+<event label="" date="8-15-2008" stage="1"/>
+<event label="" date="8-18-2008" stage="8"/>
+</project>
+<project id="153" name="SK4">
+<event label="" date="9-20-2008" stage="3"/>
+<event label="" date="9-30-2008" stage="6"/>
+</project>
+<project id="154" name="Soap">
+<event label="" date="9-28-2008" stage="1"/>
+<event label="" date="9-30-2008" stage="-1"/>
+</project>
+<project id="155" name="Mayfarers">
+<event label="" date="10-5-2008" stage="1"/>
+<event label="" date="10-15-2008" stage="2"/>
+</project>
+<project id="157" name="LCC">
+<event label="" date="10-2-2008" stage="1"/>
+<event label="" date="10-12-2008" stage="2"/>
+<event label="" date="10-28-2008" stage="3"/>
+</project>
+<project id="158" name="Longer Vacations">
+<event label="" date="10-2-2008" stage="3"/>
+<event label="" date="10-10-2008" stage="6"/>
+</project>
+<project id="162" name="SK5">
+<event label="" date="11-18-2008" stage="1"/>
+</project>
+<project id="163" name="Unwish">
+<event label="" date="10-22-2008" stage="1"/>
+<event label="" date="10-25-2008" stage="2"/>
+<event label="" date="11-2-2008" stage="3"/>
+<event label="" date="11-13-2008" stage="4"/>
+</project>
+</data>

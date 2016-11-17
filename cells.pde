@@ -6,10 +6,12 @@ import processing.pdf.*;
 import java.util.Calendar;
 Global global; //always create the global variable before using any of the default classes (created by Don)
 
+
 PApplet pg;
 //PGraphics pg;
 PFont font;
 //MovieMaker mm;
+PShape shoeOutline; 
 
 boolean saveToPrint = false;
 
@@ -26,7 +28,7 @@ float trx = 0;
 float trz = 0;
 
 
-int totalParticles = 40 ;  //odd number
+int totalParticles = 300 ;  //odd number
 Particle[] particles = new Particle[totalParticles];
 Particle puller,pusher;
 Cloud cl;
@@ -37,7 +39,7 @@ boolean click = false;
 
 void setup(){
   //initialize stage
-  size(800,500,P3D);
+  size(800,900,P3D);
   pg = this;
   //pg = createGraphics(3000,3000,P3D);
   pg.background(255);
@@ -50,7 +52,7 @@ void setup(){
   global.init();
   //initialize moviemaker
   //if(RECORDING){ mm = new MovieMaker(pg,global.w,global.h,"mov.mov",24,MovieMaker.JPEG,MovieMaker.HIGH); }
-
+  shoeOutline =  loadShape("outline.svg");
   initParticles();
 }
 
@@ -113,6 +115,8 @@ void render(){
 
 
   }
+
+  shape(shoeOutline,-50,-40);
     
 
   if(CLOCKING&&frameCount%100==0){

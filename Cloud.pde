@@ -8,9 +8,10 @@ class Cloud{
   boolean wrapping = false; boolean bouncing = true;
   boolean puller_wrapping = false; boolean puller_bouncing = true; boolean puller_locked = true;
   boolean pusher_wrapping = false; boolean pusher_bouncing = true; boolean pusher_locked = true;
-  float speed = 0.1; float wander_speed = 0.1; float attract_distance = 80; float attract_speed = 0.0006; float repel_distance = 40; float repel_speed = 0.05;
-  float puller_speed = 0.005; float puller_wander_speed = 0.01; float puller_attract_distance = 200; float puller_attract_speed = 0.0007; float puller_repel_distance = 30; float puller_repel_speed = 0.07;
-  float pusher_speed = 0.005; float pusher_wander_speed = 0.01; float pusher_attract_distance = 0; float pusher_attract_speed = 0.0005; float pusher_repel_distance = 60; float pusher_repel_speed = 0.08;
+  float speed = 0.1; float wander_speed = 0.1; float attract_distance = 80/2; float attract_speed = 0.0006;  float repel_speed = 0.05;
+  float repel_distance = 40/2;
+  float puller_speed = 0.005; float puller_wander_speed = 0.01; float puller_attract_distance = 200/2; float puller_attract_speed = 0.0007; float puller_repel_distance = 30/2; float puller_repel_speed = 0.07;
+  float pusher_speed = 0.005; float pusher_wander_speed = 0.01; float pusher_attract_distance = 0; float pusher_attract_speed = 0.0005; float pusher_repel_distance = 60/2; float pusher_repel_speed = 0.08;
   float gx = 0; float gy = 0; float gz = 0;
   float friction = 0.1;
   float bounce_friction = 0.4;

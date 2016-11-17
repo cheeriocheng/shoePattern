@@ -25,10 +25,12 @@ public class cells extends PApplet {
 
 Global global; //always create the global variable before using any of the default classes (created by Don)
 
+
 PApplet pg;
 //PGraphics pg;
 PFont font;
 //MovieMaker mm;
+PShape shoeOutline; 
 
 boolean saveToPrint = false;
 
@@ -45,7 +47,7 @@ float trx = 0;
 float trz = 0;
 
 
-int totalParticles = 40 ;  //odd number
+int totalParticles = 300 ;  //odd number
 Particle[] particles = new Particle[totalParticles];
 Particle puller,pusher;
 Cloud cl;
@@ -56,7 +58,7 @@ boolean click = false;
 
 public void setup(){
   //initialize stage
-  size(800,500,P3D);
+  size(800,900,P3D);
   pg = this;
   //pg = createGraphics(3000,3000,P3D);
   pg.background(255);
@@ -69,7 +71,7 @@ public void setup(){
   global.init();
   //initialize moviemaker
   //if(RECORDING){ mm = new MovieMaker(pg,global.w,global.h,"mov.mov",24,MovieMaker.JPEG,MovieMaker.HIGH); }
-
+  shoeOutline =  loadShape("outline.svg");
   initParticles();
 }
 
@@ -132,6 +134,8 @@ public void render(){
 
 
   }
+
+  shape(shoeOutline,-50,-40);
     
 
   if(CLOCKING&&frameCount%100==0){
@@ -281,9 +285,10 @@ class Cloud{
   boolean wrapping = false; boolean bouncing = true;
   boolean puller_wrapping = false; boolean puller_bouncing = true; boolean puller_locked = true;
   boolean pusher_wrapping = false; boolean pusher_bouncing = true; boolean pusher_locked = true;
-  float speed = 0.1f; float wander_speed = 0.1f; float attract_distance = 80; float attract_speed = 0.0006f; float repel_distance = 40; float repel_speed = 0.05f;
-  float puller_speed = 0.005f; float puller_wander_speed = 0.01f; float puller_attract_distance = 200; float puller_attract_speed = 0.0007f; float puller_repel_distance = 30; float puller_repel_speed = 0.07f;
-  float pusher_speed = 0.005f; float pusher_wander_speed = 0.01f; float pusher_attract_distance = 0; float pusher_attract_speed = 0.0005f; float pusher_repel_distance = 60; float pusher_repel_speed = 0.08f;
+  float speed = 0.1f; float wander_speed = 0.1f; float attract_distance = 80/2; float attract_speed = 0.0006f;  float repel_speed = 0.05f;
+  float repel_distance = 40/2;
+  float puller_speed = 0.005f; float puller_wander_speed = 0.01f; float puller_attract_distance = 200/2; float puller_attract_speed = 0.0007f; float puller_repel_distance = 30/2; float puller_repel_speed = 0.07f;
+  float pusher_speed = 0.005f; float pusher_wander_speed = 0.01f; float pusher_attract_distance = 0; float pusher_attract_speed = 0.0005f; float pusher_repel_distance = 60/2; float pusher_repel_speed = 0.08f;
   float gx = 0; float gy = 0; float gz = 0;
   float friction = 0.1f;
   float bounce_friction = 0.4f;
@@ -632,14 +637,28 @@ public void keyPressed() {
 
 
 public void mouseReleased() {
-    //lower left corner 
+    //substitute a pair of points 
     int i = floor(random(0, particles.length/2));
    
     float r = random(2,3);
 
-    particles[2*i]. x = mouseX -pg.width/2;
-    particles[2*i]. y= mouseY -pg.height/2;
-    // particles[2*i+1] = new Particle(-mouseX,mouseY,0,r,true); 
+    float d = mouseX - pg.width/2 ;
+    if (abs(d) < 10){
+        particles[2*i]. x = 0;
+        particles[2*i]. y= mouseY -pg.height/2 - d;
+
+        particles[2*i+1]. x = 0;
+        particles[2*i+1]. y= mouseY -pg.height/2 +d;
+
+    }else{
+        particles[2*i]. x = mouseX -pg.width/2;
+        particles[2*i]. y= mouseY -pg.height/2;
+        particles[2*i+1].x = - mouseX + pg.width/2;
+        particles[2*i+1].y = mouseY -pg.height/2;
+    }
+
+ 
+
 
     
 }

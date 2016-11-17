@@ -335,8 +335,8 @@ class Cloud{
   public void add_particle(Particle $p){
     $p.wrapping = wrapping; $p.bouncing = bouncing;
     $p.speed = speed; $p.wander_speed = wander_speed; 
-    // $p.attract_distance = attract_distance;
-    $p.attract_distance = attract_distance * (1- $p.y/pg.height);
+    $p.attract_distance = attract_distance;
+    // $p.attract_distance = attract_distance * (1- $p.y/pg.height);
      $p.attract_speed = attract_speed; $p.repel_distance = repel_distance; $p.repel_speed = repel_speed;
     $p.gx = gx; $p.gy = gy; $p.gz = gz; $p.friction = friction; $p.bounce_friction = bounce_friction;
     particles[nparticles++] = $p;
@@ -1550,6 +1550,7 @@ class Polygon{
       }
     }else if($type=="curve"){
       pg.curveTightness(-0.8f);
+      
       pg.curveVertex(points[npoints-1].x,points[npoints-1].y,points[npoints-1].z);
       for(int i=0;i<npoints;i++){
         pg.curveVertex(points[i].x,points[i].y);

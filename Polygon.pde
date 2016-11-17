@@ -411,6 +411,7 @@ class Polygon{
       }
     }else if($type=="curve"){
       pg.curveTightness(-0.8);
+      
       pg.curveVertex(points[npoints-1].x,points[npoints-1].y,points[npoints-1].z);
       for(int i=0;i<npoints;i++){
         pg.curveVertex(points[i].x,points[i].y);

@@ -56,15 +56,24 @@ void setup(){
   initParticles();
 }
 
+
 void initParticles(){
+
+
+  // addPointsInPair(0,10,100);
+  // addPointsInPair(2,20,150);
+  // addPointsInPair(4,8,100);
+  // addPointsInPair(6,140,550);
+  // addPointsInPair(8,240,700);
+
 
   //initialize sketch
   for(int i=0;i<particles.length/2;i++){
+
     float x =random(pg.width)-pg.width/2; 
     float y = random(pg.height)-pg.height/2;
     float r = random(2,3);
-    particles[2*i] = new Particle(x,y,0,r,true);
-    particles[2*i+1] = new Particle(-x,y,0,r,true); 
+    addPointsInPair(i,x,y,r);
     
   }
   cl = new Cloud(particles);
@@ -73,6 +82,16 @@ void initParticles(){
 
 
 }
+
+void addPointsInPair(int i,float x,float y){
+  addPointsInPair(i,x,y,2);
+}
+
+void addPointsInPair(int i,float x,float y,float r){
+  particles[2*i] = new Particle(x,y,0,r,true);
+  particles[2*i+1] = new Particle(-x,y,0,r,true); 
+}
+
 void draw(){
    render();
 }
@@ -120,7 +139,7 @@ void render(){
     
 
   if(CLOCKING&&frameCount%100==0){
-    println(100/((millis()-timer)/1000.0f));
+    // println(100/((millis()-timer)/1000.0f));
     timer = millis();
   }
   //if(RECORDING){ mm.addFrame(); }

@@ -75,15 +75,24 @@ public void setup(){
   initParticles();
 }
 
+
 public void initParticles(){
+
+
+  // addPointsInPair(0,10,100);
+  // addPointsInPair(2,20,150);
+  // addPointsInPair(4,8,100);
+  // addPointsInPair(6,140,550);
+  // addPointsInPair(8,240,700);
+
 
   //initialize sketch
   for(int i=0;i<particles.length/2;i++){
+
     float x =random(pg.width)-pg.width/2; 
     float y = random(pg.height)-pg.height/2;
     float r = random(2,3);
-    particles[2*i] = new Particle(x,y,0,r,true);
-    particles[2*i+1] = new Particle(-x,y,0,r,true); 
+    addPointsInPair(i,x,y,r);
     
   }
   cl = new Cloud(particles);
@@ -92,6 +101,16 @@ public void initParticles(){
 
 
 }
+
+public void addPointsInPair(int i,float x,float y){
+  addPointsInPair(i,x,y,2);
+}
+
+public void addPointsInPair(int i,float x,float y,float r){
+  particles[2*i] = new Particle(x,y,0,r,true);
+  particles[2*i+1] = new Particle(-x,y,0,r,true); 
+}
+
 public void draw(){
    render();
 }
@@ -139,7 +158,7 @@ public void render(){
     
 
   if(CLOCKING&&frameCount%100==0){
-    println(100/((millis()-timer)/1000.0f));
+    // println(100/((millis()-timer)/1000.0f));
     timer = millis();
   }
   //if(RECORDING){ mm.addFrame(); }
@@ -289,7 +308,9 @@ class Cloud{
   float repel_distance = 40/2;
   float puller_speed = 0.005f; float puller_wander_speed = 0.01f; float puller_attract_distance = 200/2; float puller_attract_speed = 0.0007f; float puller_repel_distance = 30/2; float puller_repel_speed = 0.07f;
   float pusher_speed = 0.005f; float pusher_wander_speed = 0.01f; float pusher_attract_distance = 0; float pusher_attract_speed = 0.0005f; float pusher_repel_distance = 60/2; float pusher_repel_speed = 0.08f;
-  float gx = 0; float gy = 0; float gz = 0;
+  float gx = 0; 
+  float gy = 0; //0 
+  float gz = 0;
   float friction = 0.1f;
   float bounce_friction = 0.4f;
   Cloud(Particle[] $particles){
@@ -313,13 +334,16 @@ class Cloud{
   }
   public void add_particle(Particle $p){
     $p.wrapping = wrapping; $p.bouncing = bouncing;
-    $p.speed = speed; $p.wander_speed = wander_speed; $p.attract_distance = attract_distance; $p.attract_speed = attract_speed; $p.repel_distance = repel_distance; $p.repel_speed = repel_speed;
+    $p.speed = speed; $p.wander_speed = wander_speed; 
+    // $p.attract_distance = attract_distance;
+    $p.attract_distance = attract_distance * (1- $p.y/pg.height);
+     $p.attract_speed = attract_speed; $p.repel_distance = repel_distance; $p.repel_speed = repel_speed;
     $p.gx = gx; $p.gy = gy; $p.gz = gz; $p.friction = friction; $p.bounce_friction = bounce_friction;
     particles[nparticles++] = $p;
   }
   public void add_puller(Particle $p){
     $p.wrapping = puller_wrapping; $p.bouncing = puller_bouncing; $p.locked = puller_locked;
-    $p.speed = puller_speed; $p.wander_speed = puller_wander_speed; $p.attract_distance = puller_attract_distance; $p.attract_speed = puller_attract_speed; $p.repel_distance = puller_repel_distance; $p.repel_speed = puller_repel_speed;
+    $p.speed = puller_speed; $p.wander_speed = puller_wander_speed; $p.attract_distance = puller_attract_distance ; $p.attract_speed = puller_attract_speed; $p.repel_distance = puller_repel_distance; $p.repel_speed = puller_repel_speed;
     $p.gx = gx; $p.gy = gy; $p.gz = gz; $p.friction = friction; $p.bounce_friction = bounce_friction;
     pullers[npullers++] = $p;
   }
@@ -637,11 +661,10 @@ public void keyPressed() {
 
 
 public void mouseReleased() {
+    println("x: "+mouseX + "y: "+ mouseY);
     //substitute a pair of points 
     int i = floor(random(0, particles.length/2));
-   
     float r = random(2,3);
-
     float d = mouseX - pg.width/2 ;
     if (abs(d) < 10){
         particles[2*i]. x = 0;
@@ -657,10 +680,6 @@ public void mouseReleased() {
         particles[2*i+1].y = mouseY -pg.height/2;
     }
 
- 
-
-
-    
 }
 //------ LINE ------//
 class Line{

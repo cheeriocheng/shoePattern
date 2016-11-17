@@ -12,7 +12,9 @@ class Cloud{
   float repel_distance = 40/2;
   float puller_speed = 0.005; float puller_wander_speed = 0.01; float puller_attract_distance = 200/2; float puller_attract_speed = 0.0007; float puller_repel_distance = 30/2; float puller_repel_speed = 0.07;
   float pusher_speed = 0.005; float pusher_wander_speed = 0.01; float pusher_attract_distance = 0; float pusher_attract_speed = 0.0005; float pusher_repel_distance = 60/2; float pusher_repel_speed = 0.08;
-  float gx = 0; float gy = 0; float gz = 0;
+  float gx = 0; 
+  float gy = 0; //0 
+  float gz = 0;
   float friction = 0.1;
   float bounce_friction = 0.4;
   Cloud(Particle[] $particles){
@@ -36,13 +38,16 @@ class Cloud{
   }
   void add_particle(Particle $p){
     $p.wrapping = wrapping; $p.bouncing = bouncing;
-    $p.speed = speed; $p.wander_speed = wander_speed; $p.attract_distance = attract_distance; $p.attract_speed = attract_speed; $p.repel_distance = repel_distance; $p.repel_speed = repel_speed;
+    $p.speed = speed; $p.wander_speed = wander_speed; 
+    $p.attract_distance = attract_distance;
+    // $p.attract_distance = attract_distance * (1- $p.y/pg.height);
+     $p.attract_speed = attract_speed; $p.repel_distance = repel_distance; $p.repel_speed = repel_speed;
     $p.gx = gx; $p.gy = gy; $p.gz = gz; $p.friction = friction; $p.bounce_friction = bounce_friction;
     particles[nparticles++] = $p;
   }
   void add_puller(Particle $p){
     $p.wrapping = puller_wrapping; $p.bouncing = puller_bouncing; $p.locked = puller_locked;
-    $p.speed = puller_speed; $p.wander_speed = puller_wander_speed; $p.attract_distance = puller_attract_distance; $p.attract_speed = puller_attract_speed; $p.repel_distance = puller_repel_distance; $p.repel_speed = puller_repel_speed;
+    $p.speed = puller_speed; $p.wander_speed = puller_wander_speed; $p.attract_distance = puller_attract_distance ; $p.attract_speed = puller_attract_speed; $p.repel_distance = puller_repel_distance; $p.repel_speed = puller_repel_speed;
     $p.gx = gx; $p.gy = gy; $p.gz = gz; $p.friction = friction; $p.bounce_friction = bounce_friction;
     pullers[npullers++] = $p;
   }

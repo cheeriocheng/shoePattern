@@ -15,11 +15,10 @@ void keyPressed() {
 
 
 void mouseReleased() {
+    println("x: "+mouseX + "y: "+ mouseY);
     //substitute a pair of points 
     int i = floor(random(0, particles.length/2));
-   
     float r = random(2,3);
-
     float d = mouseX - pg.width/2 ;
     if (abs(d) < 10){
         particles[2*i]. x = 0;
@@ -35,8 +34,4 @@ void mouseReleased() {
         particles[2*i+1].y = mouseY -pg.height/2;
     }
 
- 
-
-
-    
 }

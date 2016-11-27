@@ -41,6 +41,7 @@ class Voronoi{
   void render(){
     for(int i=0;i<npolygons;i++){
       polygons[i].render("bezier");
+      // polygons[i].render("straight");
     }
   }
 }

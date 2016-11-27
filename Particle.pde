@@ -125,15 +125,17 @@ class Particle extends Point{
     }
   }
   void render(){
-    if(r>0.5){
-      pg.pushMatrix();
-      pg.translate(x,y,z);
-      pg.ellipse(0,0,r*2,r*2);
-      pg.popMatrix();
-      pg.point(x,y,z);
-    }else{
-      pg.point(x,y,z);
-    }
+    // if(r>0.5){
+    //   pg.pushMatrix();
+    //   pg.translate(x,y,z);
+    //   pg.ellipse(0,0,r*2,r*2);
+    //   pg.popMatrix();
+    //   pg.point(x,y,z);
+    // }else{
+    //   pg.point(x,y,z);
+    // }
+    
+    pg.ellipse(x,y,r*2,r*2);
     //pg.line(ox,oy,oz,x,y,z);
   }
 }

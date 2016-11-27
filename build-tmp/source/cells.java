@@ -47,7 +47,7 @@ float trx = 0;
 float trz = 0;
 
 
-int totalParticles = 300 ;  //odd number
+int totalParticles = 250 ;  //odd number
 Particle[] particles = new Particle[totalParticles];
 Particle puller,pusher;
 Cloud cl;
@@ -55,6 +55,8 @@ Delaunay de;
 Voronoi vo;
 
 boolean click = false;
+  
+// PShape s;
 
 public void setup(){
   //initialize stage
@@ -73,6 +75,32 @@ public void setup(){
   //if(RECORDING){ mm = new MovieMaker(pg,global.w,global.h,"mov.mov",24,MovieMaker.JPEG,MovieMaker.HIGH); }
   shoeOutline =  loadShape("outline.svg");
   initParticles();
+
+  smooth();
+
+//  s = createShape();
+// s.beginShape();
+
+// // Exterior part of shape
+// s.vertex(-100,-100);
+// s.vertex(100,-100);
+// s.vertex(100,100);
+// s.vertex(-100,100);
+// s.vertex(-100,-100);
+
+// // Interior part of shape
+// s.beginContour();
+// s.vertex(-10,-10);
+// s.vertex(-10,10);
+// s.vertex(10,10);
+// s.vertex(10,-10);
+// s.endContour();
+
+// // Finishing off shape
+// s.endShape();
+
+
+
 }
 
 
@@ -113,6 +141,20 @@ public void addPointsInPair(int i,float x,float y,float r){
 
 public void draw(){
    render();
+    
+  shape(shoeOutline,-50,0);  // -50,-40
+
+//background(52);
+  // translate(width/2, height/2);
+
+  // shape(s);
+
+  if(CLOCKING&&frameCount%100==0){
+    // println(100/((millis()-timer)/1000.0f));
+    timer = millis();
+  }
+  //if(RECORDING){ mm.addFrame(); }
+
 }
 
 public void render(){
@@ -138,9 +180,17 @@ public void render(){
    if (saveToPrint) {
       beginRecord(PDF, timestamp()+".pdf");
     }
+
+    //render cores 
+    fill(0);
+    noStroke();
+    cl.render();
+    //render cells 
+    noFill();   
+    stroke(100); 
+    strokeWeight(3);
+    vo.render();
     
-      vo.render();
-     cl.render();
         if (saveToPrint) {
       saveToPrint = false;
       println("saving to pdf \u2013 finishing");
@@ -154,14 +204,7 @@ public void render(){
 
   }
 
-  shape(shoeOutline,-50,-40);
-    
-
-  if(CLOCKING&&frameCount%100==0){
-    // println(100/((millis()-timer)/1000.0f));
-    timer = millis();
-  }
-  //if(RECORDING){ mm.addFrame(); }
+ 
 }
 
 
@@ -662,24 +705,25 @@ public void keyPressed() {
 
 public void mouseReleased() {
     println("x: "+mouseX + "y: "+ mouseY);
-    //substitute a pair of points 
-    int i = floor(random(0, particles.length/2));
-    float r = random(2,3);
-    float d = mouseX - pg.width/2 ;
-    if (abs(d) < 10){
-        particles[2*i]. x = 0;
-        particles[2*i]. y= mouseY -pg.height/2 - d;
+    if (mouseButton == LEFT){
+        //substitute a pair of points 
+        int i = floor(random(0, particles.length/2));
+        float r = random(2,3);
+        float d = mouseX - pg.width/2 ;
+        if (abs(d) < 10){
+            particles[2*i]. x = 0;
+            particles[2*i]. y= mouseY -pg.height/2 - d;
 
-        particles[2*i+1]. x = 0;
-        particles[2*i+1]. y= mouseY -pg.height/2 +d;
+            particles[2*i+1]. x = 0;
+            particles[2*i+1]. y= mouseY -pg.height/2 +d;
 
-    }else{
-        particles[2*i]. x = mouseX -pg.width/2;
-        particles[2*i]. y= mouseY -pg.height/2;
-        particles[2*i+1].x = - mouseX + pg.width/2;
-        particles[2*i+1].y = mouseY -pg.height/2;
+        }else{
+            particles[2*i]. x = mouseX -pg.width/2;
+            particles[2*i]. y= mouseY -pg.height/2;
+            particles[2*i+1].x = - mouseX + pg.width/2;
+            particles[2*i+1].y = mouseY -pg.height/2;
+        }
     }
-
 }
 //------ LINE ------//
 class Line{
@@ -985,15 +1029,17 @@ class Particle extends Point{
     }
   }
   public void render(){
-    if(r>0.5f){
-      pg.pushMatrix();
-      pg.translate(x,y,z);
-      pg.ellipse(0,0,r*2,r*2);
-      pg.popMatrix();
-      pg.point(x,y,z);
-    }else{
-      pg.point(x,y,z);
-    }
+    // if(r>0.5){
+    //   pg.pushMatrix();
+    //   pg.translate(x,y,z);
+    //   pg.ellipse(0,0,r*2,r*2);
+    //   pg.popMatrix();
+    //   pg.point(x,y,z);
+    // }else{
+    //   pg.point(x,y,z);
+    // }
+    
+    pg.ellipse(x,y,r*2,r*2);
     //pg.line(ox,oy,oz,x,y,z);
   }
 }
@@ -2228,6 +2274,7 @@ class Voronoi{
   public void render(){
     for(int i=0;i<npolygons;i++){
       polygons[i].render("bezier");
+      // polygons[i].render("straight");
     }
   }
 }

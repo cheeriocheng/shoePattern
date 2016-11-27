@@ -28,7 +28,7 @@ float trx = 0;
 float trz = 0;
 
 
-int totalParticles = 300 ;  //odd number
+int totalParticles = 250 ;  //odd number
 Particle[] particles = new Particle[totalParticles];
 Particle puller,pusher;
 Cloud cl;
@@ -36,6 +36,8 @@ Delaunay de;
 Voronoi vo;
 
 boolean click = false;
+  
+// PShape s;
 
 void setup(){
   //initialize stage
@@ -54,6 +56,32 @@ void setup(){
   //if(RECORDING){ mm = new MovieMaker(pg,global.w,global.h,"mov.mov",24,MovieMaker.JPEG,MovieMaker.HIGH); }
   shoeOutline =  loadShape("outline.svg");
   initParticles();
+
+  smooth();
+
+//  s = createShape();
+// s.beginShape();
+
+// // Exterior part of shape
+// s.vertex(-100,-100);
+// s.vertex(100,-100);
+// s.vertex(100,100);
+// s.vertex(-100,100);
+// s.vertex(-100,-100);
+
+// // Interior part of shape
+// s.beginContour();
+// s.vertex(-10,-10);
+// s.vertex(-10,10);
+// s.vertex(10,10);
+// s.vertex(10,-10);
+// s.endContour();
+
+// // Finishing off shape
+// s.endShape();
+
+
+
 }
 
 
@@ -94,6 +122,20 @@ void addPointsInPair(int i,float x,float y,float r){
 
 void draw(){
    render();
+    
+  shape(shoeOutline,-50,0);  // -50,-40
+
+//background(52);
+  // translate(width/2, height/2);
+
+  // shape(s);
+
+  if(CLOCKING&&frameCount%100==0){
+    // println(100/((millis()-timer)/1000.0f));
+    timer = millis();
+  }
+  //if(RECORDING){ mm.addFrame(); }
+
 }
 
 void render(){
@@ -119,9 +161,17 @@ void render(){
    if (saveToPrint) {
       beginRecord(PDF, timestamp()+".pdf");
     }
+
+    //render cores 
+    fill(0);
+    noStroke();
+    cl.render();
+    //render cells 
+    noFill();   
+    stroke(100); 
+    strokeWeight(3);
+    vo.render();
     
-      vo.render();
-     cl.render();
         if (saveToPrint) {
       saveToPrint = false;
       println("saving to pdf – finishing");
@@ -135,14 +185,7 @@ void render(){
 
   }
 
-  shape(shoeOutline,-50,-40);
-    
-
-  if(CLOCKING&&frameCount%100==0){
-    // println(100/((millis()-timer)/1000.0f));
-    timer = millis();
-  }
-  //if(RECORDING){ mm.addFrame(); }
+ 
 }
 
 

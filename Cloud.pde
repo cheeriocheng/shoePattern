@@ -106,6 +106,7 @@ class Cloud{
       pushers[i].step();
     }
   }
+  
   void render(){
     for(int i=0;i<nparticles;i++){
       particles[i].render();

@@ -17,7 +17,7 @@ void keyPressed() {
 void mouseReleased() {
     println("x: "+mouseX + "y: "+ mouseY);
     if (mouseButton == LEFT){
-        //substitute a pair of points 
+        //substitute a pair of points with the ones where mouse is
         int i = floor(random(0, particles.length/2));
         float r = random(2,3);
         float d = mouseX - pg.width/2 ;
@@ -35,6 +35,7 @@ void mouseReleased() {
             particles[2*i+1].y = mouseY -pg.height/2;
         }
     } else if (mouseButton == RIGHT){
-        
+        //move the dots in proximity or the right mouse click
+        cl.delete(mouseX-pg.width/2,mouseY -pg.height/2, 5); //distance 
     }
 }

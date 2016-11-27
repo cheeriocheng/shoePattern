@@ -106,7 +106,31 @@ class Cloud{
       pushers[i].step();
     }
   }
-  
+
+//move the point out of the way
+  void delete(float x, float y, float dis){
+
+     for(int i=0;i<nparticles;i++){
+      float tempD = dist(x,y,particles[i].x, particles[i].y);
+      if(tempD<dis ){
+        int otheri ;
+        if (i%2==0){
+          otheri = i + 1 ;
+        }else{
+          otheri = i-1;
+        }
+        println("deleting: "+i+" " + otheri);
+
+        particles[i].x=0;
+        particles[i].y=-height;
+        particles[otheri].x=0;
+        particles[otheri].y=-height;
+      }
+    }
+
+    
+  }
+
   void render(){
     for(int i=0;i<nparticles;i++){
       particles[i].render();

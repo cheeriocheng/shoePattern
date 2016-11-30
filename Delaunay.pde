@@ -27,7 +27,7 @@ class Delaunay{
     }
     Point[] ps = new Point[3]; ps[0] = $p;
     points[npoints++] = $p;
-    Segment[] segments = new Segment[100];
+    Segment[] segments = new Segment[nfaces * 3];
     int nsegments = 0;
     for(int i=0;i<nfaces;i++){
       if(faces[i].is_point_inside_circumcircle($p)){

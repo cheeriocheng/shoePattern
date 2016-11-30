@@ -17,6 +17,12 @@ void keyPressed() {
 void mouseReleased() {
     println("x: "+mouseX + "y: "+ mouseY);
     if (mouseButton == LEFT){
+
+        if (mouseX > 50 && mouseX < 140 && mouseY > 50 && mouseY < 140) {
+            initParticles();
+            return;
+        }
+
         //substitute a pair of points with the ones where mouse is
         int i = floor(random(0, particles.length/2));
         float r = random(2,3);

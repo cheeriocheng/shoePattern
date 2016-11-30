@@ -12,6 +12,7 @@ PApplet pg;
 PFont font;
 //MovieMaker mm;
 PShape shoeOutline; 
+PShape refreshButton; 
 
 boolean saveToPrint = false;
 
@@ -55,8 +56,10 @@ void setup(){
   global.init();
   //initialize moviemaker
   //if(RECORDING){ mm = new MovieMaker(pg,global.w,global.h,"mov.mov",24,MovieMaker.JPEG,MovieMaker.HIGH); }
-  shoeOutline =  loadShape("outline.svg");
+  shoeOutline = loadShape("outline.svg");
   shoeOutline.scale(height/900.0);
+  refreshButton = loadShape("refresh.svg");
+  refreshButton.translate(0, 0, 10);
   initParticles();
 
   smooth();
@@ -124,9 +127,9 @@ void addPointsInPair(int i,float x,float y,float r){
 
 void draw(){
     
-
   render();
-
+  
+  shape(refreshButton, 50, 50);
 //background(52);
   // translate(width/2, height/2);
 

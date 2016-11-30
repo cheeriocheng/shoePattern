@@ -41,7 +41,8 @@ boolean click = false;
 
 void setup(){
   //initialize stage
-  size(800,900,P3D);
+  //size(800,900,P3D);
+  fullScreen(P3D);
   pg = this;
   //pg = createGraphics(3000,3000,P3D);
   pg.background(255);
@@ -55,6 +56,7 @@ void setup(){
   //initialize moviemaker
   //if(RECORDING){ mm = new MovieMaker(pg,global.w,global.h,"mov.mov",24,MovieMaker.JPEG,MovieMaker.HIGH); }
   shoeOutline =  loadShape("outline.svg");
+  shoeOutline.scale(height/900.0);
   initParticles();
 
   smooth();
@@ -121,9 +123,9 @@ void addPointsInPair(int i,float x,float y,float r){
 }
 
 void draw(){
-   render();
     
-  shape(shoeOutline,-50,0);  // -50,-40
+
+  render();
 
 //background(52);
   // translate(width/2, height/2);
@@ -143,7 +145,9 @@ void render(){
   rz += (trz-rz)*.05;
 
   if(RENDERING){
-    pg.background(200);
+    pg.background(50);
+
+    shape(shoeOutline, width/2, 0);  // -50,-40
 
     pg.pushMatrix();
     pg.translate(global.w/2,global.h/2,0);
@@ -187,7 +191,3 @@ void render(){
 
  
 }
-
-
-
-

@@ -31,6 +31,7 @@ PApplet pg;
 PFont font;
 //MovieMaker mm;
 PShape shoeOutline; 
+PShape refreshButton; 
 
 boolean saveToPrint = false;
 
@@ -60,7 +61,8 @@ boolean click = false;
 
 public void setup(){
   //initialize stage
-  size(800,900,P3D);
+  //size(800,900,P3D);
+  fullScreen(P3D);
   pg = this;
   //pg = createGraphics(3000,3000,P3D);
   pg.background(255);
@@ -73,46 +75,22 @@ public void setup(){
   global.init();
   //initialize moviemaker
   //if(RECORDING){ mm = new MovieMaker(pg,global.w,global.h,"mov.mov",24,MovieMaker.JPEG,MovieMaker.HIGH); }
-  shoeOutline =  loadShape("outline.svg");
+  shoeOutline = loadShape("outline.svg");
+  shoeOutline.scale(height/900.0f);
+  refreshButton = loadShape("refresh.svg");
+  refreshButton.translate(0, 0, 10);
   initParticles();
 
   smooth();
 
-//  s = createShape();
-// s.beginShape();
-
-// // Exterior part of shape
-// s.vertex(-100,-100);
-// s.vertex(100,-100);
-// s.vertex(100,100);
-// s.vertex(-100,100);
-// s.vertex(-100,-100);
-
-// // Interior part of shape
-// s.beginContour();
-// s.vertex(-10,-10);
-// s.vertex(-10,10);
-// s.vertex(10,10);
-// s.vertex(10,-10);
-// s.endContour();
-
-// // Finishing off shape
-// s.endShape();
-
+  textSize(32);
+  textAlign(CENTER);
 
 
 }
 
 
 public void initParticles(){
-
-
-  // addPointsInPair(0,10,100);
-  // addPointsInPair(2,20,150);
-  // addPointsInPair(4,8,100);
-  // addPointsInPair(6,140,550);
-  // addPointsInPair(8,240,700);
-
 
   //initialize sketch
   for(int i=0;i<particles.length/2;i++){
@@ -140,14 +118,11 @@ public void addPointsInPair(int i,float x,float y,float r){
 }
 
 public void draw(){
-   render();
     
-  shape(shoeOutline,-50,0);  // -50,-40
-
-//background(52);
-  // translate(width/2, height/2);
-
-  // shape(s);
+  render();
+  shape(refreshButton, 50, 50);
+  fill(255);
+  text("TAP TO MODIFY YOUR SHOE PATTERN", pg.width/2, pg.height-100); 
 
   if(CLOCKING&&frameCount%100==0){
     // println(100/((millis()-timer)/1000.0f));
@@ -162,7 +137,9 @@ public void render(){
   rz += (trz-rz)*.05f;
 
   if(RENDERING){
-    pg.background(200);
+    pg.background(50);
+
+    shape(shoeOutline, width/2, 0);  // -50,-40
 
     pg.pushMatrix();
     pg.translate(global.w/2,global.h/2,0);
@@ -206,10 +183,6 @@ public void render(){
 
  
 }
-
-
-
-
 //------ ARROW ------//
 //arrows are mostly used for rendering vectors and things in 3d :: they're not very effecient for every-frame rendering
 class Arrow extends Segment{
@@ -446,6 +419,7 @@ class Cloud{
     }
   }
 
+//move the point out of the way
   public void delete(float x, float y, float dis){
 
      for(int i=0;i<nparticles;i++){
@@ -512,7 +486,7 @@ class Delaunay{
     }
     Point[] ps = new Point[3]; ps[0] = $p;
     points[npoints++] = $p;
-    Segment[] segments = new Segment[100];
+    Segment[] segments = new Segment[nfaces * 3];
     int nsegments = 0;
     for(int i=0;i<nfaces;i++){
       if(faces[i].is_point_inside_circumcircle($p)){
@@ -730,7 +704,13 @@ public void keyPressed() {
 public void mouseReleased() {
     println("x: "+mouseX + "y: "+ mouseY);
     if (mouseButton == LEFT){
-        //substitute a pair of points 
+
+        if (mouseX > 50 && mouseX < 140 && mouseY > 50 && mouseY < 140) {
+            initParticles();
+            return;
+        }
+
+        //substitute a pair of points with the ones where mouse is
         int i = floor(random(0, particles.length/2));
         float r = random(2,3);
         float d = mouseX - pg.width/2 ;
@@ -748,6 +728,7 @@ public void mouseReleased() {
             particles[2*i+1].y = mouseY -pg.height/2;
         }
     } else if (mouseButton == RIGHT){
+        //move the dots in proximity or the right mouse click
         cl.delete(mouseX-pg.width/2,mouseY -pg.height/2, 5); //distance 
     }
 }

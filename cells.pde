@@ -48,9 +48,8 @@ void setup(){
   //pg = createGraphics(3000,3000,P3D);
   pg.background(255);
   //if(RECORDING){ frameRate(24); }
-  font = loadFont("ArialMT-18.vlw");
-  textFont(font,18);
-  textAlign(CENTER,CENTER);
+  
+  
   //initialize global
   global = new Global(pg.width,pg.height,pg.height);
   global.init();
@@ -64,41 +63,15 @@ void setup(){
 
   smooth();
 
-//  s = createShape();
-// s.beginShape();
-
-// // Exterior part of shape
-// s.vertex(-100,-100);
-// s.vertex(100,-100);
-// s.vertex(100,100);
-// s.vertex(-100,100);
-// s.vertex(-100,-100);
-
-// // Interior part of shape
-// s.beginContour();
-// s.vertex(-10,-10);
-// s.vertex(-10,10);
-// s.vertex(10,10);
-// s.vertex(10,-10);
-// s.endContour();
-
-// // Finishing off shape
-// s.endShape();
-
+  font = loadFont("ArialMT-18.vlw");
+  textSize(20);
+  textAlign(CENTER,CENTER);
 
 
 }
 
 
 void initParticles(){
-
-
-  // addPointsInPair(0,10,100);
-  // addPointsInPair(2,20,150);
-  // addPointsInPair(4,8,100);
-  // addPointsInPair(6,140,550);
-  // addPointsInPair(8,240,700);
-
 
   //initialize sketch
   for(int i=0;i<particles.length/2;i++){
@@ -128,12 +101,11 @@ void addPointsInPair(int i,float x,float y,float r){
 void draw(){
     
   render();
-  
   shape(refreshButton, 50, 50);
-//background(52);
-  // translate(width/2, height/2);
 
-  // shape(s);
+  translate(pg.width/2, pg.height-50,10);
+  fill(255);
+  text("TAP TO MODIFY YOUR SHOE PATTERN", 0,0); 
 
   if(CLOCKING&&frameCount%100==0){
     // println(100/((millis()-timer)/1000.0f));
